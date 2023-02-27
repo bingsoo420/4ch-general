@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"os"
 )
 
 var (
@@ -22,7 +22,6 @@ func main() {
 		mappings[b] = generals
 	}
 
-	if j, _ := json.Marshal(mappings); true {
-		fmt.Println(string(j))
-	}
+	jsonPayload, _ := json.Marshal(mappings)
+	os.WriteFile("output/mappings.json", jsonPayload, 0644)
 }
