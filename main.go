@@ -3,31 +3,26 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"os"
-	"time"
+)
+
+var (
+	BOARDS = []string{"g", "fit", "biz"}
 )
 
 func main() {
-	dat, err := os.ReadFile("./fixtures/g/catalog.json")
-	if err != nil {
-		panic(err)
-	}
-	var catalog []Page
+	mappings := make(map[string]interface{})
 
-	if err := json.Unmarshal(dat, &catalog); err != nil {
-		panic(err)
-	}
+	for _, b := range BOARDS {
+		catalog, err := GetBoardCatalog(b)
+		if err != nil {
+			panic(err)
+		}
 
-	created := time.Now().Unix()
-	generalMaps := BuildGenerals("g", catalog)
-
-	g := General{
-		created,
-		"g",
-		generalMaps,
+		generals := BuildGenerals(b, catalog)
+		mappings[b] = generals
 	}
 
-    if j, _ := json.Marshal(g); true {
+	if j, _ := json.Marshal(mappings); true {
 		fmt.Println(string(j))
 	}
 }
