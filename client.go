@@ -19,17 +19,17 @@ func newClient() {
 func GetBoardCatalog(board string) (Catalog, error) {
 	newClient()
 
-    response, err := client.Get(fmt.Sprintf("https://a.4cdn.org/%s/catalog.json", board))
+	response, err := client.Get(fmt.Sprintf("https://a.4cdn.org/%s/catalog.json", board))
 	if err != nil {
 		return nil, err
 	}
 	defer response.Body.Close()
 
-    var catalog Catalog
-    err = json.NewDecoder(response.Body).Decode(&catalog)
-    if err != nil {
-        return nil, err
-    }
+	var catalog Catalog
+	err = json.NewDecoder(response.Body).Decode(&catalog)
+	if err != nil {
+		return nil, err
+	}
 
 	return catalog, nil
 }

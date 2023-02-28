@@ -7,7 +7,7 @@ import (
 )
 
 func ParseSubject(subject string) (bool, string) {
-    re := regexp.MustCompile(`\/\w+\/`)
+	re := regexp.MustCompile(`\/\w+\/`)
 
 	found := re.Find([]byte(subject))
 
