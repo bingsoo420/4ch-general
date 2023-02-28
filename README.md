@@ -27,6 +27,7 @@ Which can be modified in `main.go` file
 ## How do I use?
 
 ### As a source of truth
+
 As a bash script
 
 ```sh
@@ -36,16 +37,18 @@ curl https://raw.githubusercontent.com/bingsoo420/4ch-general/master/output/mapp
 As a simple JavaScript fetch request
 
 ```js
-fetch("https://raw.githubusercontent.com/bingsoo420/4ch-general/master/output/mappings.json")
-    .then((r) => r.json())
-    .then((r) => {
-        if (r.g?.wdg) {
-            window.location.href = r.g.wdg;
-        }
-    });
+fetch(
+  "https://raw.githubusercontent.com/bingsoo420/4ch-general/master/output/mappings.json"
+)
+  .then((r) => r.json())
+  .then((r) => {
+    if (r.g?.wdg) {
+      window.location.href = r.g.wdg;
+    }
+  });
 ```
 
-The source of truth will refresh every 6 hours. Files may be updated to be 
+The source of truth will refresh every 6 hours. Files may be updated to be
 granular later as `output/g.json` or `output/fit.json` if the 6 hours interval
 was found to be too little for certain boards.
 
@@ -61,7 +64,7 @@ See the output JSON file in `output/mappings.json`
 
 ### As a fork
 
-Set up a personal access token in GitHub by visiting 
+Set up a personal access token in GitHub by visiting
 
 `Profile / Settings / Developer settings / Personal access tokens / Fine-grained tokens / generate new token`
 
@@ -71,21 +74,10 @@ Copy the output and put that into your forked repo settings
 
 `Repo / Settings / Secrets and variables / Actions / New repository secret`
 
-Add your access token with the name `PAT` and the value is your copied token
+Add your access token with the name `PAT` and the value is your copied token.
+
+Add your email with the name `EMAIL` and the value is your GitHub account email.
 
 Set workflow permission to have read/write permissions
 
 `Repo / Settings / Actions / General / Workflow Permissions / Read and Write Permissions`
-
-Update the `.github/workflows/cron-go.yml` the final block containing the git configs
-
-```sh
-git config --global user.name $USERNAME
-git config --global user.email $EMAIL
-
-git remote set-url --push origin https://$USERNAME:$TOKEN@github.com/$USERNAME/4ch-general
-
-git add -A
-git commit -m "[CRON] mappings.json updated"
-git push
-```
