@@ -73,11 +73,11 @@ Copy the output and put that into your forked repo settings
 
 Add your access token with the name `PAT` and the value is your copied token
 
-Set workflow permission to ave read/write permissions
+Set workflow permission to have read/write permissions
 
 `Repo / Settings / Actions / General / Workflow Permissions / Read and Write Permissions`
 
-Update the `.github/workflows/cron-go/yml` the final block containing the git configs
+Update the `.github/workflows/cron-go.yml` the final block containing the git configs
 
 ```sh
 git config --global user.name $USERNAME
