@@ -12,14 +12,14 @@ var (
 func main() {
 	mappings := make(map[string]interface{})
 
-	for _, b := range BOARDS {
-		catalog, err := GetBoardCatalog(b)
+	for _, board := range BOARDS {
+		catalog, err := GetBoardCatalog(board)
 		if err != nil {
 			panic(err)
 		}
 
-		generals := BuildGenerals(b, catalog)
-		mappings[b] = generals
+		generals := BuildGenerals(board, catalog)
+		mappings[board] = generals
 	}
 
 	jsonPayload, _ := json.Marshal(mappings)
