@@ -54,7 +54,7 @@ func TestItParseGeneralsFromFixtures(t *testing.T) {
 				panic(err)
 			}
 
-			generals := BuildGenerals("g", catalog)
+			generals := BuildGenerals(tt.board, catalog)
 
 			if len(generals) != tt.length {
 				t.Errorf("got %d, want %d", len(generals), tt.length)
