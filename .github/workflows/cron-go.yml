@@ -27,7 +27,7 @@ jobs:
     - name: Commit and push
       run: |
         git config --global user.name "bingsoo420"
-        git config --global user.name "gearmoss+bingsoo@gmail.com"
+        git config --global user.email "gearmoss+bingsoo@gmail.com"
 
         git add -A
         git commit -m "Mappings.json updated"
