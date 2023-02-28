@@ -26,9 +26,10 @@ Which can be modified in `main.go` file
 
 ## How do I use?
 
+### As a source of truth
 As a bash script
 
-```bash
+```sh
 curl https://raw.githubusercontent.com/bingsoo420/4ch-general/master/output/mappings.json | jq .g.wdg
 ```
 
@@ -47,3 +48,44 @@ fetch("https://raw.githubusercontent.com/bingsoo420/4ch-general/master/output/ma
 The source of truth will refresh every 6 hours. Files may be updated to be 
 granular later as `output/g.json` or `output/fit.json` if the 6 hours interval
 was found to be too little for certain boards.
+
+### As a program
+
+```sh
+git clone https://github.com/bingsoo420/4ch-general
+cd 4ch-general
+go run ./
+```
+
+See the output JSON file in `output/mappings.json`
+
+### As a fork
+
+Set up a personal access token in GitHub by visiting 
+
+`Profile / Settings / Developer settings / Personal access tokens / Fine-grained tokens / generate new token`
+
+Set the token's permission to have read/write to `Contents`
+
+Copy the output and put that into your forked repo settings
+
+`Repo / Settings / Secrets and variables / Actions / New repository secret`
+
+Add your access token with the name `PAT` and the value is your copied token
+
+Set workflow permission to ave read/write permissions
+
+`Repo / Settings / Actions / General / Workflow Permissions / Read and Write Permissions`
+
+Update the `.github/workflows/cron-go/yml` the final block containing the git configs
+
+```sh
+git config --global user.name $USERNAME
+git config --global user.email $EMAIL
+
+git remote set-url --push origin https://$USERNAME:$TOKEN@github.com/$USERNAME/4ch-general
+
+git add -A
+git commit -m "[CRON] mappings.json updated"
+git push
+```
