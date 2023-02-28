@@ -48,7 +48,7 @@ func TestItParseGeneralsFromFixtures(t *testing.T) {
 				panic(err)
 			}
 
-			var catalog []Page
+			var catalog Catalog
 
 			if err := json.Unmarshal(dat, &catalog); err != nil {
 				panic(err)

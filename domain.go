@@ -14,6 +14,8 @@ type Page struct {
 	Threads []Thread `json:"threads"`
 }
 
+type Catalog []Page
+
 type General struct {
 	ParsedAt int64             `json:"parsed_at"`
 	Board    string            `json:"board"`

@@ -16,7 +16,7 @@ func newClient() {
 	client = &http.Client{}
 }
 
-func GetBoardCatalog(board string) ([]Page, error) {
+func GetBoardCatalog(board string) (Catalog, error) {
 	newClient()
 
     response, err := client.Get(fmt.Sprintf("https://a.4cdn.org/%s/catalog.json", board))
@@ -25,7 +25,7 @@ func GetBoardCatalog(board string) ([]Page, error) {
 	}
 	defer response.Body.Close()
 
-    var catalog []Page
+    var catalog Catalog
     err = json.NewDecoder(response.Body).Decode(&catalog)
     if err != nil {
         return nil, err

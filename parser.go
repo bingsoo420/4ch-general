@@ -14,7 +14,7 @@ func ParseSubject(subject string) (bool, string) {
 	return len(find) > 0, strings.Trim(string(find), "/")
 }
 
-func BuildGenerals(board string, catalog []Page) map[string]string {
+func BuildGenerals(board string, catalog Catalog) map[string]string {
 	generals := make(map[string]string)
 
 	for _, page := range catalog {
