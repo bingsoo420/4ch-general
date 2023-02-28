@@ -5,8 +5,12 @@ name: Go
 
 on:
   push:
+    paths:
+      - "**.go"
     branches: [ "master" ]
   pull_request:
+    paths:
+      - "**.go"
     branches: [ "master" ]
 
 jobs:
