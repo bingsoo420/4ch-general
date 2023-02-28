@@ -30,4 +30,5 @@ jobs:
         git config --global user.email "gearmoss+bingsoo@gmail.com"
 
         git add -A
-        git commit -m "Mappings.json updated"
+        git commit -m "[CRON] mappings.json updated"
+        git push
