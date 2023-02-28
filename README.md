@@ -1,4 +1,4 @@
-# 4chan General
+# 4chan General [![Go](https://github.com/bingsoo420/4ch-general/actions/workflows/go.yml/badge.svg)](https://github.com/bingsoo420/4ch-general/actions/workflows/go.yml)
 
 ## What is this?
 
