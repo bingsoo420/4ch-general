@@ -25,9 +25,13 @@ jobs:
       run: go run -v ./...
 
     - name: Commit and push
+      env:
+        TOKEN: ${{ secrets.PAT }}
       run: |
         git config --global user.name "bingsoo420"
         git config --global user.email "gearmoss+bingsoo@gmail.com"
+
+        git remote set-url --push origin https://bingsoo420:$TOKEN@github.com/bingsoo420/4ch-general
 
         git add -A
         git commit -m "[CRON] mappings.json updated"
