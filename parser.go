@@ -7,11 +7,11 @@ import (
 )
 
 func ParseSubject(subject string) (bool, string) {
-	re := regexp.MustCompile(`\/(\w+)\/`)
+    re := regexp.MustCompile(`\/\w+\/`)
 
-	find := re.Find([]byte(subject))
+	found := re.Find([]byte(subject))
 
-	return len(find) > 0, strings.Trim(string(find), "/")
+	return len(found) > 0, strings.Trim(string(found), "/")
 }
 
 func BuildGenerals(board string, catalog Catalog) map[string]string {
@@ -19,9 +19,9 @@ func BuildGenerals(board string, catalog Catalog) map[string]string {
 
 	for _, page := range catalog {
 		for _, thread := range page.Threads {
-			if isSubject, subject := ParseSubject(thread.Sub); isSubject {
-				subject := strings.ToLower(subject)
-				generals[subject] = fmt.Sprintf("https://boards.4chan.org/%s/thread/%d", board, thread.No)
+			if isGeneral, name := ParseSubject(thread.Sub); isGeneral {
+				name := strings.ToLower(name)
+				generals[name] = fmt.Sprintf("https://boards.4chan.org/%s/thread/%d", board, thread.No)
 			}
 		}
 	}
